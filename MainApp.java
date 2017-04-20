@@ -1,14 +1,15 @@
-package config;
+package tpoint;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import tpoint.*;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@Configuration
-public class ApplicationConfig {
+import config.ApplicationConfig;
 
-	@Bean
-	public HelloWorld helloworld(){
-		return new HelloWorld();
+public class MainApp {
+
+	public static void main(String[] args) {		
+	//ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");	//  not using Beans.xml here
+	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+    	HelloWorld hw = (HelloWorld)ctx.getBean("helloworld");
+    	hw.printMe();
 	}
 }
